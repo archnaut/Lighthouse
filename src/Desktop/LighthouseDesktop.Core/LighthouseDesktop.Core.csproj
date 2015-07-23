@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AD08AC7F-4798-47AA-84EB-3B7747C05BB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LighthouseDesktop.Core</RootNamespace>
+    <AssemblyName>LighthouseDesktop.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\Libs\Desktop\DotNetZip\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Parametero">
+      <HintPath>..\..\Libs\Desktop\Parametero\Parametero.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ExtensionMethods\ComposedUnitTestOutcomeExtensions.cs" />
+    <Compile Include="Infrastructure\FileSystem\WildcardPathsParser.cs" />
+    <Compile Include="Infrastructure\Integration\ICommandLineArgsParser.cs" />
+    <Compile Include="Infrastructure\Integration\ParameteroCommandLineArgsParserAdapter.cs" />
+    <Compile Include="Infrastructure\Logging\ConsoleLogger.cs" />
+    <Compile Include="Infrastructure\Logging\FileLogger.cs" />
+    <Compile Include="Infrastructure\Logging\ILogger.cs" />
+    <Compile Include="Infrastructure\Logging\MultiLogger.cs" />
+    <Compile Include="Infrastructure\ResourceManagement\CleanupManager.cs" />
+    <Compile Include="Infrastructure\ResourceManagement\GenericResourcesProvider.cs" />
+    <Compile Include="Infrastructure\ResourceManagement\MarkerTypeResourceManager.cs" />
+    <Compile Include="Infrastructure\ResourceManagement\SilverlightVersionSpecificResourceManager.cs" />
+    <Compile Include="Infrastructure\ResourceManagement\SimpleResourceManager.cs" />
+    <Compile Include="Infrastructure\TestExecutionEnvironment\HtmlPageBuilder.cs" />
+    <Compile Include="Infrastructure\TestExecution\IndividualDllsSourcesTestExecutor.cs" />
+    <Compile Include="Infrastructure\TestExecution\RemoteTestExecutionResults.cs" />
+    <Compile Include="Infrastructure\TestExecution\RemoteTestExecutionSettings.cs" />
+    <Compile Include="Infrastructure\TestExecution\TestExecutionOrchectrator.cs" />
+    <Compile Include="Infrastructure\TestExecution\TestResultsInformer.cs" />
+    <Compile Include="Infrastructure\TestExecution\TestExecutor.cs" />
+    <Compile Include="Infrastructure\TestResultsConverters\NUnitXmlResultsFileCreator.cs" />
+    <Compile Include="Infrastructure\XapManagement\ISilverlightApplicationManifestAnalyzer.cs" />
+    <Compile Include="Infrastructure\XapManagement\ManifestAssemblyPartItem.cs" />
+    <Compile Include="Infrastructure\XapManagement\Silverlight4AppManifestAnalyzer.cs" />
+    <Compile Include="Infrastructure\XapManagement\SilverlightDllSourcedLighthouseXapBuilder.cs" />
+    <Compile Include="Infrastructure\XapManagement\SilverlightManifestAnalysisResult.cs" />
+    <Compile Include="Infrastructure\XapManagement\TemplatedSilverlightApplicationManifestGenerator.cs" />
+    <Compile Include="Infrastructure\XapManagement\XapBuilder.cs" />
+    <Compile Include="Infrastructure\XapManagement\XapBuildResult.cs" />
+    <Compile Include="Infrastructure\XapManagement\XapReader.cs" />
+    <Compile Include="Infrastructure\XapManagement\XapSourcedXapBuildResult.cs" />
+    <Compile Include="Infrastructure\XapManagement\XapSourcedLighthouseXapBuilder.cs" />
+    <Compile Include="Infrastructure\TestExecution\XapSourcedTestExecutor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\GenericResourcesNamespaceMarker.cs" />
+    <Compile Include="Resources\Silverlight4Specific\Silverlight4SpecificResourcesNamespaceMarker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lighthouse.Common\Lighthouse.Common.csproj">
+      <Project>{7D57DE3E-4492-4B80-98CC-4150F2AEC945}</Project>
+      <Name>Lighthouse.Common %28Desktop\Lighthouse.Common%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppManifestTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Silverlight4HostPage.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Libs\Silverlight\Silverlight4\SilverlightToolkit\April2010\Microsoft.Silverlight.Testing.dll">
+      <Link>Resources\Silverlight4Specific\Microsoft.Silverlight.Testing.dll</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Libs\Silverlight\Silverlight4\SilverlightToolkit\April2010\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll">
+      <Link>Resources\Silverlight4Specific\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.Core\Bin\Debug\Lighthouse.Silverlight.Core.dll">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Silverlight.Core.dll</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Lighthouse.Silverlight.TestRunnerApp.dll">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Silverlight.TestRunnerApp.dll</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Lighthouse.Common.dll">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Common.dll</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Lighthouse.Common.pdb">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Common.pdb</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Lighthouse.Silverlight.Core.pdb">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Silverlight.Core.pdb</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Lighthouse.Silverlight.TestRunnerApp.pdb">
+      <Link>Resources\Silverlight4Specific\Lighthouse.Silverlight.TestRunnerApp.pdb</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Microsoft.Silverlight.Testing.pdb">
+      <Link>Resources\Silverlight4Specific\Microsoft.Silverlight.Testing.pdb</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Silverlight\Silverlight4\Lighthouse.Silverlight.TestRunnerApp\Bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.pdb">
+      <Link>Resources\Silverlight4Specific\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.pdb</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
